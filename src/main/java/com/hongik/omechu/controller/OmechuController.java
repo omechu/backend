@@ -1,15 +1,14 @@
 package com.hongik.omechu.controller;
 
+import com.hongik.omechu.domain.Food;
 import com.hongik.omechu.service.OmechuService;
 import com.hongik.omechu.service.dto.FoodResponse;
 import com.hongik.omechu.service.dto.FoodsResponse;
 import com.hongik.omechu.service.dto.RoomResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,7 +32,8 @@ public class OmechuController {
     }
 
     @PostMapping("/api/room/{roomUuid}/food")
-    public ResponseEntity<Void> confirm(@PathVariable String roomUuid) {
-        return ResponseEntity.ok(omechuService.confirm());
+    public ResponseEntity<Void> confirm(@PathVariable String roomUuid, @RequestBody Long foodId) {
+        omechuService.confirm(roomUuid, foodId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
