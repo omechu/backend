@@ -26,4 +26,8 @@ public class Food {
     @Lob
     private String imgUrl;
 
+    public Food(final String name, final String imgUrl) {
+        this.name = name;
+        this.imgUrl = imgUrl;
+    }
 }
