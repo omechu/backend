@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -40,7 +40,7 @@ public class OmechuController {
     }
 
     @PostMapping("/api/room/{roomUuid}/food")
-    public ResponseEntity<Void> confirm(@PathVariable String roomUuid, @RequestBody Long foodId) {
+    public ResponseEntity<Void> confirm(@PathVariable String roomUuid, @RequestParam Long foodId) {
         log.info("confirm");
         omechuService.confirm(roomUuid, foodId);
         return ResponseEntity.status(HttpStatus.OK).build();
