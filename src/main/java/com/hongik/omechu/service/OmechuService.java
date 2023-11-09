@@ -41,6 +41,10 @@ public class OmechuService {
         Food food;
         do {
             // 랜덤으로 하나 가져오기
+            final List<RoomFood> roomFoods = roomFoodRepository.findAll();
+            if (roomFoods.size() == 12) {
+                roomFoodRepository.deleteAll();
+            }
             food = pickRandomFood();
             // roomFoodRepo에 uuid랑 있는지 확인
         } while (roomFoodRepository.existsByRoomUuidAndFoodId(roomUuid, food.getId()));
